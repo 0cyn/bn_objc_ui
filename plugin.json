@@ -1,0 +1,37 @@
+{
+  "pluginmetadataversion": 2,
+  "name": "",
+  "type": [
+    "core",
+    "ui",
+    "architecture",
+    "binaryview",
+    "helper"
+  ],
+  "api": [
+    "python3"
+  ],
+  "description": "",
+  "longdescription": "",
+  "license": {
+    "name": "",
+    "text": ""
+  },
+  "platforms": [
+    "Darwin",
+    "Linux",
+    "Windows"
+  ],
+  "installinstructions": {
+    "Darwin": "",
+    "Linux": "",
+    "Windows": ""
+  },
+  "dependencies": {
+    "pip": [
+    ]
+  },
+  "version": "",
+  "author": "",
+  "minimumbinaryninjaversion": 4958
+}
