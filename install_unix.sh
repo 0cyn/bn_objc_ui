@@ -3,7 +3,7 @@
 # This is a fairly simple example installation script for Darwin and Linux.
 
 # Set these in your run configuration.
-# PROJECT_NAME="SidebarExample"
+# PROJECT_NAME="Example"
 # PLUGIN_INSTALL_DIR="$HOME/Library/Application Support/Binary Ninja/plugins"
 # BINARYNINJA_PYTHON="/Applications/Binary Ninja.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3"
 # BINARYNINJA_PYTHON_LIBS="/Applications/Binary Ninja.app/Contents/Resources/bundled-python3/"
@@ -14,6 +14,10 @@ PROJECT_NAME="$(python3 project.py --get-project-name)"
 PLUGIN_INSTALL_DIR="$(python3 project.py --find-plugin-install-dir)"
 BINARYNINJA_PYTHON="$(python3 project.py --find-python-interpreter)"
 BINARYNINJA_PYTHON_LIBS="$(python3 project.py --find-pythonhome)"
+
+if [ -z "$JETBRAINS_PYDEVD_VERSION" ]; then
+    JETBRAINS_PYDEVD_VERSION="223.8617.48"
+fi
 
 if [ ! -d "$PLUGIN_INSTALL_DIR" ]; then
     echo "Error: Plugin install directory does not exist: $PLUGIN_INSTALL_DIR"
@@ -28,17 +32,23 @@ if [ ! -f "$BINARYNINJA_PYTHON" ]; then
     exit 1
 fi
 if [ "$USE_JETBRAINS_DEBUGGER" -eq 1 ]; then
-    export PYTHONHOME="$BINARYNINJA_PYTHON_LIBS"
-    "$BINARYNINJA_PYTHON" -m pip install pydevd-pycharm~="$JETBRAINS_PYDEVD_VERSION"
+    PYTHONHOME="$BINARYNINJA_PYTHON_LIBS" "$BINARYNINJA_PYTHON" -m pip install pydevd-pycharm~="$JETBRAINS_PYDEVD_VERSION"
 fi
 if [ "$USE_VSCODE_DEBUGGER" -eq 1 ]; then
-    export PYTHONHOME="$BINARYNINJA_PYTHON_LIBS"
-    "$BINARYNINJA_PYTHON" -m pip install debugpy
+    PYTHONHOME="$BINARYNINJA_PYTHON_LIBS" "$BINARYNINJA_PYTHON" -m pip install debugpy
 fi
 
-killall binaryninja
-# Copy contents of src to folder named PROJECT_NAME in PLUGIN_INSTALL_DIR
+PYTHONHOME="$BINARYNINJA_PYTHON_LIBS" "$BINARYNINJA_PYTHON" -m pip install -r requirements.txt
+
 mkdir -p "$PLUGIN_INSTALL_DIR/$PROJECT_NAME"
 cp -r ./* "$PLUGIN_INSTALL_DIR/$PROJECT_NAME"
 echo "Installed to " "$PLUGIN_INSTALL_DIR/$PROJECT_NAME"
-
+if [ "$(uname)" = "Darwin" ]; then
+    killall binaryninja
+    sleep 1 # Race condition with `open` and process termination
+    open "$(python3 project.py --find-binaryninja)"
+fi
+if [ "$(uname)" = "Linux" ]; then
+    killall binaryninja
+    "$(python3 project.py --find-binaryninja)"
+fi
