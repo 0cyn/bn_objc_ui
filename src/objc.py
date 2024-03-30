@@ -25,17 +25,6 @@ def load_image(data: 'binaryninja.BinaryView'):
 	data_io = BytesIO(data_bytes)
 	image = ktool.load_image(data_io)
 
-	# hotfix for k2l problem: It loads rebase opcodes but doesn't apply them to the backing view
-	# This is Actually A Real Problem with newer binaries.
-	fixups: ktool.loader.ChainedFixups = image.chained_fixups
-	data_io.seek(0)
-	for rebase in fixups.rebases.items():
-		data_io.seek(image.vm.translate(rebase[0]) + image.slice.offset)
-		data_io.write(rebase[1].to_bytes(8, 'little'))
-	data_io.seek(0)
-	image = ktool.load_image(data_io)
-	# ---
-
 	g_image_map[data_id] = image
 	return image
 
