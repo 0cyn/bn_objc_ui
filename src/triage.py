@@ -15,6 +15,19 @@ from . import objc
 g_objctriage_viewtype = None
 
 
+def data_has_objc_data(data):
+	if data is None:
+		return False
+	if not isinstance(data, binaryninja.BinaryView):
+		return False
+	if data.parent_view is None:
+		return False
+	section = data.get_section_by_name("__objc_data")
+	if section is None:
+		return False
+	return True
+
+
 class ObjCClassList(QListView):
 	def __init__(self, parent, data):
 		QListView.__init__(self, parent)
@@ -71,9 +84,17 @@ class ObjectiveCTriageView(QWidget, binaryninjaui.View):
 		self.data: binaryninja.BinaryView = data
 		QWidget.__init__(self, parent)
 		binaryninjaui.View.__init__(self)
-		binaryninjaui.View.setBinaryDataNavigable(self, True)
+		binaryninjaui.View.setBinaryDataNavigable(self, False)
 		self.setupView(self)
 		self.data = data
+		if not data_has_objc_data(data):
+			self.layout = QVBoxLayout()
+			# Centered label saying there's no objc data
+			self.no_data_label = QLabel("No Objective-C data found")
+			self.no_data_label.setAlignment(Qt.AlignCenter)
+			self.layout.addWidget(self.no_data_label)
+			self.setLayout(self.layout)
+			return
 		# check if 'BOOL' type exists
 		if self.data.get_type_by_name('BOOL') is None:
 			binaryninja.log.log_warn('Did you run this without the Objective-C workflow enabled?')
