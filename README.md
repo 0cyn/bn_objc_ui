@@ -10,8 +10,6 @@ This plugin is currently a simple Triage View for Objective-C Binaries in Binary
 
 It is a work in progress and is not yet feature complete. I'm putting it on github so I don't forget it exists <3
 
-It exists as part of a project aimed at integrating `ktool`'s utilities into BinaryNinja.
-
 `ktool` is a long-standing, long-maintained python-only project for Objective-C introspection and metadata dumping.
 
 ## Installation 
