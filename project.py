@@ -58,9 +58,11 @@ def load_settings_json():
 	with open(settings_json) as f:
 		return json.load(f)
 
+
 def print_settings_json():
 	settings_json = load_settings_json()
 	print(json.dumps(settings_json, indent=4))
+
 
 def find_python_interpreter():
 	# Check if the Python interpreter is in the path
@@ -136,8 +138,8 @@ def project_setup():
 				project_name = value
 				settings["name"] = project_name
 			elif setting == "license":
-				settings["license"] = value
-				settings["license_text"] = standard_license_text(value)
+				settings["license"]["name"] = value
+				settings["license_text"]["text"] = standard_license_text(value)
 			elif setting == "author":
 				settings["author"] = value
 			elif setting == "version":

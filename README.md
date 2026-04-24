@@ -6,13 +6,24 @@
 
 ## WIP
 
-This plugin is currently a simple Triage View for Objective-C Binaries in BinaryNinja. 
+This is a python plugin that leverages BinaryNinja's built in Objective-C processing to 
+generate headers you can click on to navigate to Objective-C functions and information. 
 
-It is a work in progress and is not yet feature complete. I'm putting it on github so I don't forget it exists <3
+The goal is to make reverse engineering Objective-C Binaries much easier
 
-`ktool` is a long-standing, long-maintained python-only project for Objective-C introspection and metadata dumping.
+## Installation
 
-## Installation 
+### Transient dependency
+
+Currently, this project depends on pygments, as we pull their stylesheets in for rendering our HTML.
+
+Whenever the final theme is decided on, unless it's decided that theme should be configurable, this theme will be 
+vendored in and the dependency removed. 
+
+You will need to install this via the Command Palette (⌘+p or ctrl+p) "Install python3 module" command before
+manually installing this plugin.
+
+### Manually installing
 
 Presumably at some point this will be in the plugin manager. 
 
@@ -28,7 +39,7 @@ linux:
 cd ~/.binaryninja/plugins
 git clone https://github.com/0cyn/bn_objc_ui.git
 ```
-win: (you can also just download the zip and unzip it in the plugin dirif you dont have git.exe)
+win: (you can also just download the zip and unzip it in the plugin dir if you dont have git.exe)
 ```bat
 cd %APPDATA%\Binary Ninja\plugins
 git clone https://github.com/0cyn/bn_objc_ui.git
