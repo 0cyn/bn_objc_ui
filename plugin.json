@@ -1,11 +1,8 @@
 {
     "pluginmetadataversion": 2,
-    "name": "ObjC Helper",
+    "name": "Objective-C Helper",
     "type": [
-        "core",
         "ui",
-        "architecture",
-        "binaryview",
         "helper"
     ],
     "api": [
@@ -28,7 +25,9 @@
         "Windows": ""
     },
     "dependencies": {
-        "pip": "pygments"
+        "pip": [
+            "pygments"
+        ]
     },
     "version": "1.0.0",
     "author": "cynder",
