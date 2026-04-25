@@ -1,7 +1,6 @@
 from enum import Enum
 from io import BytesIO
 
-from lib0cyn.log import log
 import binaryninja
 
 from dataclasses import dataclass

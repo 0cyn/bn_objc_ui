@@ -1,8 +1,10 @@
 # bn_objc_ui
 
+Development on this plugin has ceased, with the plugin being stable on at least Stable 5.3.9434
+
 #### Required Pretty Screenshot:
 
-![Screenshot](.github/indev-calc-screenshot.png)
+![Screenshot](.github/screen.png)
 
 ## WIP
 
@@ -20,14 +22,11 @@ Currently, this project depends on pygments, as we pull their stylesheets in for
 Whenever the final theme is decided on, unless it's decided that theme should be configurable, this theme will be 
 vendored in and the dependency removed. 
 
-You will need to install this via the Command Palette (⌘+p or ctrl+p) "Install python3 module" command before
-manually installing this plugin.
-
 ### Manually installing
 
-Presumably at some point this will be in the plugin manager. 
+You can install this by searching "Objective-C Helper" in the extension manager. 
 
-For now, as a user you can install it like so
+The instructions for installing it manually are below:
 
 mac:
 ```bash

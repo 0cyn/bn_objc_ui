@@ -145,8 +145,8 @@ class ObjectiveCTriageView(QWidget, binaryninjaui.View):
 		self.classinfo_tabs.setCanCloseTab(self.header_view_wrapper, False)
 
 		self.metadata_view_wrapper = QWidget(self)
-		self.classinfo_tabs.addTab(self.metadata_view_wrapper, 'Metadata')
-		self.classinfo_tabs.setCanCloseTab(self.metadata_view_wrapper, False)
+		# self.classinfo_tabs.addTab(self.metadata_view_wrapper, 'Metadata')
+		# self.classinfo_tabs.setCanCloseTab(self.metadata_view_wrapper, False)
 
 		self.class_list_wrapper = QWidget(self)
 		self.class_list_wrapper.setContentsMargins(0, 0, 0, 0)
@@ -162,19 +162,19 @@ class ObjectiveCTriageView(QWidget, binaryninjaui.View):
 		self.listings_tabs.setCanCloseTab(self.class_list_wrapper, False)
 
 		self.category_list_wrapper = QWidget(self)
-
-		self.listings_tabs.addTab(self.category_list_wrapper, "Categories")
-		self.listings_tabs.setCanCloseTab(self.category_list_wrapper, False)
-
+		#
+		# self.listings_tabs.addTab(self.category_list_wrapper, "Categories")
+		# self.listings_tabs.setCanCloseTab(self.category_list_wrapper, False)
+		#
 		self.protocol_list_wrapper = QWidget(self)
-
-		self.listings_tabs.addTab(self.protocol_list_wrapper, "Protocols")
-		self.listings_tabs.setCanCloseTab(self.protocol_list_wrapper, False)
-
+		#
+		# self.listings_tabs.addTab(self.protocol_list_wrapper, "Protocols")
+		# self.listings_tabs.setCanCloseTab(self.protocol_list_wrapper, False)
+		#
 		self.cfstr_list_wrapper = QWidget(self)
-
-		self.listings_tabs.addTab(self.cfstr_list_wrapper, "CFStrings")
-		self.listings_tabs.setCanCloseTab(self.cfstr_list_wrapper, False)
+		#
+		# self.listings_tabs.addTab(self.cfstr_list_wrapper, "CFStrings")
+		# self.listings_tabs.setCanCloseTab(self.cfstr_list_wrapper, False)
 
 		# self.debug_text = QTextEdit(self)
 		self.splitter = QSplitter(Qt.Horizontal)
